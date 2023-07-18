@@ -15,6 +15,7 @@
   []
   (c/build! {:paths ["src/thomascothran/notebooks/*"]
              :browse? true
+             :out-path "docs"
              :index "src/thomascothran/notebooks/index.clj"}))
 
 (comment
