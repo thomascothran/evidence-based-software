@@ -97,7 +97,7 @@ This section applies what we learned about metrics, and the economics of softwar
 
 [**Planning and Prioritizing Initiatives**](./planning_and_prioritizing_initiatives.clj) 🚧 What alternatives do we have to the waterfall model where we specify everything in a feature up front, and then try to hit a deadline? We will use Monte Carlo simulations and reference class forecasting to use historical data to T-shirt size projects
 
-[**T-Shirt Sizing**](./t_shirt_sizing.clj) 🚧 How can we get an approximate T-shirt size for a new initiative?
+[**T-Shirt Sizing**](/src/thomascothran/notebooks/t_shirt_sizing) 🚧 How can we get an approximate T-shirt size for a new initiative?
 
 [**Prioritizing Initiatives**](./economic_prioritization.clj) 🚧
 
