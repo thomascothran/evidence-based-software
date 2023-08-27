@@ -124,7 +124,8 @@ This is the first step in RCF. The next steps will involve collecting data on th
 
 (c/md "
 
-### Derive a Distribution from the Reference Class
+### Find the Mean and Variability of the Reference Class
+
 The second step in Reference Class Forecasting (RCF) is to collect data on the projects in the reference class and analyze the distribution of outcomes. This involves gathering data on how long each project took to complete, and then analyzing this data to understand its distribution.
 
 In our example, let's say Alice and Ben have identified their reference class as \"all completed software projects carried out by a team of 10-30 developers\". They now need to collect data on these projects.
@@ -136,7 +137,6 @@ Let's say they have data for 20 projects, and the actual durations (in days) are
 ")
 
 ^{::c/visibility {:code :hide :result :show}}
-
 (def refclass1
   [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
 
@@ -193,3 +193,5 @@ This is the essence of the aggregation of uncertainty: when we combine tasks, th
 
 This is why a method like Reference Class Forecasting, which takes into account the distribution of outcomes in similar past projects, can often provide a more accurate forecast than simply adding up individual task estimates.
 ")
+
+(c/show! *ns*)

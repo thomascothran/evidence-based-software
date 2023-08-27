@@ -2,6 +2,10 @@
 (ns thomascothran.notebooks.index
   (:require [nextjournal.clerk :as c]))
 
+^{:nextjournal.clerk/visibility {:code :hide :result :hide}}
+(c/show! *ns*)
+
+{:nextjournal.clerk/visibility {:code :hide :result :show}}
 (c/md "
 
 # Evidence Based Software Development
@@ -115,5 +119,4 @@ In this section, we are reflecting not on a particular feature, but on our proce
 
 [**Process Modelling with Monte Carlo**](./monte_carlo_process_modeling.clj) 🚧 how can we use Monte Carlo to model how work items flow through our value stream, and identify the areas which are most beneficial to optimize?
 
-[**Process Modeling with Agent Based Models**](./agent_based_models.clj) 🚧  how can we use agent based models to simulate how work items flow through our value stream, and identify the areas that are most beneficial to optimize?
-")
+[**Process Modeling with Agent Based Models**](./agent_based_models.clj) 🚧  how can we use agent based models to simulate how work items flow through our value stream, and identify the areas that are most beneficial to optimize? ")
