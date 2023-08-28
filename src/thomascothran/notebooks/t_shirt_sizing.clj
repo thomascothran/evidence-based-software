@@ -1,6 +1,7 @@
 {:nextjournal.clerk/visibility {:code :hide}}
 (ns thomascothran.notebooks.t-shirt-sizing
-  (:require [nextjournal.clerk :as c]))
+  (:require [nextjournal.clerk :as c]
+            [kixi.stats.core :as k]))
 
 (c/md "
 # T Shirt Sizing with Reference Class Forecasting
@@ -32,7 +33,7 @@ Fifth, the method is not evidence based. It is not based on clear assumptions th
 (c/md "
 ## Prerequisite Knowledge
 
-We will keep the mathematics limited, but you should understand generally what a probability distribution is. ")
+We will keep the mathematics limited. We will avoid topics like fitting distributions.")
 
 (c/md "
 
@@ -81,7 +82,7 @@ Bottom up planning may seem more intuitively appealing, since it focuses more on
 
 2. **Aggregation of Uncertainty:** When you break a project down into many small pieces and then add up the estimates, the uncertainties associated with each piece also add up. This can lead to a larger overall uncertainty in the final estimate. Adding a buffer can help, but determining the right size of the buffer is challenging and often ends up being arbitrary.
 
-3. **Neglect of Dependencies:** Bottom-up estimation often assumes that tasks are independent of each other, but in reality, tasks in a project often have complex dependencies. Delays or problems in one task can ripple through the project and cause delays in other tasks. RCF, on the other hand, takes into account the overall distribution of outcomes in similar projects, implicitly capturing these dependencies.
+3. **Neglect of Dependencies:** Bottom-up estimation often assumes that tasks are independent of each other, but in reality, tasks in a project often have complex dependencies. These dependencies can be hard to identify in advance. Delays or problems in one task can ripple through the project and cause delays in other tasks. RCF, on the other hand, takes into account the overall distribution of outcomes in similar projects, implicitly capturing these dependencies.
 
 4. **Evidence from Research:** Research by Flyvbjerg and others has shown that RCF tends to produce more accurate forecasts than traditional methods, including bottom-up estimation. This is likely because RCF leverages a broader base of information (the reference class of similar projects) and reduces the impact of cognitive biases.
 
@@ -126,7 +127,9 @@ This is the first step in RCF. The next steps will involve collecting data on th
 
 ### Find the Mean and Variability of the Reference Class
 
-The second step in Reference Class Forecasting (RCF) is to collect data on the projects in the reference class and analyze the distribution of outcomes. This involves gathering data on how long each project took to complete, and then analyzing this data to understand its distribution.
+We want to summarize our reference class data so that we can draw conclusions about our own project. We could do this by fitting our data to a distribution. However, Alice and Ben want to stick with the easiest approach available, and they regard fitting distributions as difficult.
+
+Instead, they decide to find the mean and to use percentiles from the reference class.
 
 In our example, let's say Alice and Ben have identified their reference class as \"all completed software projects carried out by a team of 10-30 developers\". They now need to collect data on these projects.
 
@@ -143,18 +146,57 @@ Let's say they have data for 20 projects, and the actual durations (in days) are
 
 (c/md "
 
-The next step is to analyze this data to understand its distribution. This involves calculating the mean (average), median (middle value), and mode (most common value), as well as measures of spread such as the range (maximum - minimum), variance, and standard deviation.
+The next step is to analyze this data to understand its distribution. This involves calculating the mean (average), the percentiles as well as measures of spread such as the range (maximum - minimum).
 
-Alice, who has a background in statistics, takes on this task. She calculates the mean by adding up all the durations and dividing by the number of projects:
+#### Finding the Mean
+
+Alice, who knows a bit of statistics, takes on this task. She calculates the mean by adding up all the durations and dividing by the number of projects:
 
 (30 + 35 + ... + 125) / 20 = 77.5 days
 
-She calculates the standard deviation to get a measure of the spread of the durations. The standard deviation is the square root of the variance, which is the average of the squared differences from the mean.
+This gives Ben and Alice something specific. But it doesn't tell them how confident they might be in 77.5 days. The more the projects are spread apart, the more variability they may need to account for.
 
-After doing the calculations, she finds that the standard deviation is about 28.9 days. This means that most project durations are within 28.9 days of the mean (either shorter or longer).
+First, they look at the range. How far apart are the quickest and longest project duration?
 
-With this analysis, Alice and Ben now have a good understanding of the distribution of outcomes in their reference class. They know that the average project takes about 77.5 days, but there's a fair amount of variation around this average.
 ")
+
+(c/tex "
+125 - 30 = 95
+")
+
+(c/md "
+
+95 days seems pretty significant. That's more than the mean!
+
+Let's see if we can bet a better idea of the shape of the project durations by looking at the percentiles of this class.
+
+To do this, Alice will use Excel.
+
+First, she enters the project data into a single column. She chooses column A, from cell A1 to A20.
+
+Second, she uses the excel formula to find the 25 percentile:
+
+```
+=PERCENTILE.INC(A1:A20, 0.25)
+```
+
+She repeats this for the 50th and 75th percentile.
+
+She finds:
+
+|Percentile | Days |
+|-------|------|
+|25% | 53.7 |
+|50% | 77.5 |
+|75% | 101.25 |
+")
+
+
+(c/md "
+Alice and Ben decide they have something pretty workable at this point. Since they want to err on the side of caution, they estimate about 100 days.
+")
+
+
 
 (c/md "
 # Appendix
