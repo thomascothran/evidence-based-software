@@ -10,46 +10,46 @@ In this section, we will discuss how to get a general estimation for how long a 
 ")
 
 (c/md "
-## The Problem Statement
+## ⚠️ The Problem
 
 When embarking on a new software development project, one of the most challenging tasks is accurately estimating the time and resources it will take to complete.
 
-Traditional estimation methods often rely on expert intuition. For example, a product owner may write a summary of the features required, and then engineers review the summary and provide an estimate.
+Traditional estimation methods in software often rely on expert intuition. For example, a product owner may write a summary of the features required, and then engineers review the summary and provide an estimate.
 
-Or, to get a more accurate estimation, the product owner may write out the stories to be implemented. Engineers then work through the stories, providing estimates for each. The story estimates are summed, then a buffer added. This is the \"bottom up \" approach to estimation.
+Or, in an effort to get a more accurate estimation, the product owner may write out the stories to be implemented. Engineers then work through the stories, providing estimates for each. The story estimates are summed, then a buffer added. This is the \"bottom up \" approach to estimation.
 
-There are a family of related problems:
+This approach typically fails for a number of reasons:
 
-First, these methods are inaccurate. The process of estimation encourages a number of cognitive biases. Optimism bias, recency bias, group bias.
+👎 Inaccuracy
 
-Second, engineers are often aware of the expected timeline. The process of estimation then turns into a process in which engineers convince themselves the work fits into that timeline.
+These methods are inaccurate. The process of estimation encourages a number of cognitive biases. Optimism bias, recency bias, group bias are all -- unintentionally -- encouraged.
 
-Third, the method encourages precision over accuracy. \"I'll pick them up at tomorrow at 3:13 PM\" is very precise. It is unlikely to be accurate. By contrast, \"sometime between 3 and 3:30 PM\" is less precise, but likely much more accurate.
+🎯 The confusion of precision and accuracy
 
-Fourth, the absence of confidence intervals. A confidence interval is the probability that the \"right answer\" falls in a given range. Estimation that gives a date has a 24 hour range. If a feature is promised 120 days from now, what is the probability that it will be delivered on that date? The confidence interval is very likely in single digits.
+\"I'll pick them up at tomorrow at 3:13 PM\" is very precise. It is unlikely to be accurate. By contrast, \"sometime between 3 and 3:30 PM\" is less precise, but likely much more accurate.
 
-Fifth, the method is not evidence based. It is not based on clear assumptions that can be verified. And the evidence is that expert intuition is inferior to statistical methods for project planning.")
+The project manager often wants \"a date\", rather than a more accurate -- but less precise -- range with confidence intervals. A confidence interval is the probability that the \"right answer\" falls in a given range. Estimation that gives a date has a 24 hour range. If a feature is promised 120 days from now, what is the probability that it will be delivered on that date? The confidence interval is very likely in single digits.
+
+📅 Confirmation bias
+
+Engineers are often aware of the expected timeline. The process of estimation then turns into a process in which engineers convince themselves the work fits into that timeline. ")
 
 (c/md "
-## Prerequisite Knowledge
+## 🧮 Prerequisite Knowledge
 
-We will keep the mathematics limited. We will avoid topics like fitting distributions.")
+We will keep the mathematics limited. Most of the literature on reference class forecasting involves fitting distributions. We will avoid this, and use percentiles instead.")
 
 (c/md "
 
-## Narrative Example
+## 👩👨 Narrative Example
 
 Alice and Ben are part of the project management team at SoftCo, a company that specializes in software development. They've been tasked with the planning and execution of a new project: the development of a mobile application. This is a significant undertaking for SoftCo, and the stakes are high. The mobile application is expected to be a major product offering, and its success could greatly influence the company's future.
 
-Alice, a seasoned developer, is well aware of the complexities involved in such a project. She knows that developing a mobile application involves various stages, including design, coding, testing, and deployment. Each stage comes with its own set of challenges and uncertainties. She's concerned about the technical aspects of the project, such as choosing the right technology stack, ensuring the app's performance and security, and dealing with potential bugs and issues that might arise during development.
+Alice, a seasoned developer, is well aware of the complexities involved in such a project. She knows that developing a mobile application involves various stages, including design, coding, testing, and deployment. She's concerned about the technical aspects of the project, such as choosing the right technology stack, ensuring the app's performance and security, and dealing with potential bugs and issues that might arise during development.
 
 Ben, the project manager, has a different set of concerns. He's responsible for defining the project scope, scheduling tasks, allocating resources, and most importantly, estimating the project's cost and duration. He knows that accurate estimates are crucial for setting realistic expectations, securing the necessary budget, and keeping the project on track.
 
 In the past, SoftCo has used traditional bottom-up estimation for their projects. This involves breaking down the project into individual tasks, estimating each task, and then adding up these estimates to get the total project estimate. However, this approach has often led to over-optimistic estimates. Projects frequently run over budget and behind schedule, causing stress for the team and dissatisfaction for stakeholders.
-
-Ben and Alice remember a particularly challenging project from last year. The initial estimate was for six months of development time. However, unexpected technical issues, changes in requirements, and other unforeseen challenges caused the project to take nearly a year to complete. This led to budget overruns, strained relationships with stakeholders, and a lot of stress for the team.
-
-Additionally, they are concerned about the amount of time engineers need to spend for accurate estimates. They want to avoid days of tedious meetings.
 
 As they start planning for the mobile application project, Alice and Ben are determined to avoid the mistakes of the past. They want to find a better way to estimate the project's cost and duration, one that takes into account the inherent uncertainties and complexities of software development. They're looking for a solution that can provide more accurate and realistic estimates, helping them set better expectations, manage resources more effectively, and ultimately, ensure the success of the project.
 
@@ -58,13 +58,13 @@ After some research, Alice discovers Reference Class Forecasting. She proposes t
 
 (c/md "
 
-## T-Shirt Sizing with Reference Class Forecasting
+## 👕 T-Shirt Sizing with Reference Class Forecasting
 
-This is where Reference Class Forecasting (RCF) comes into play. RCF is a method that aims to improve the accuracy of predictions by reducing the impact of cognitive biases and leveraging statistical information from a relevant reference class of past projects.
+Reference Class Forecasting is a simple, evidence based way to estimate the size of a project. RCF has been shown aims to improve the accuracy of predictions by reducing the impact of cognitive biases and leveraging statistical information, which produce more accurate estimates than reliance on subjective intuitions.
 
 The concept of Reference Class Forecasting (RCF) was first introduced by the Nobel laureate Daniel Kahneman and Amos Tversky in the late 1970s as part of their work on Prospect Theory, which describes how people make decisions involving risk and uncertainty. The idea was further developed by Kahneman in his collaboration with Bent Flyvbjerg, a Danish planning scholar, in the early 2000s. They applied the method to large-scale project planning, where it has been shown to significantly improve the accuracy of cost estimates and timelines.
 
-### How Reference Class Forecasting Works
+### ⏳ How Reference Class Forecasting Works
 
 RCF involves three steps:
 
@@ -74,7 +74,7 @@ RCF involves three steps:
 
 3. **Use this distribution to forecast the outcome of your project:** Finally, you use this distribution to make a probabilistic forecast for your project. This might involve saying something like \"there's a 60% chance we'll finish within six months, and a 90% chance we'll finish within nine months.\"
 
-### Why RCF is Better than Bottom Up Planning
+### 🥇 Why RCF is Better than Bottom Up Planning
 
 Bottom up planning may seem more intuitively appealing, since it focuses more on the unique details of new projects. However, it is less accurate for several reasons.
 
@@ -94,15 +94,15 @@ RCF provides a complementary approach that can help improve the accuracy of proj
 ")
 
 (c/md "
-## Applying RCF
+## 👩👨 Applying RCF
 
-Let's explain RCF's three steps, and then we will illustrate them by returning to Alice and Ben.
+Let us illustrate the three steps in RCF by applying them to Alice and Ben's situation.
 
 ")
 
 (c/md "
 
-### Establish a reference class
+### 📇 Establish a reference class
 
 In the context of RCF, a reference class is a group of past projects that are similar to the project you're trying to forecast. The key is to identify a class that is broad enough to be statistically meaningful but narrow enough to be truly comparable to the new project.
 
@@ -125,7 +125,7 @@ This is the first step in RCF. The next steps will involve collecting data on th
 
 (c/md "
 
-### Find the Mean and Variability of the Reference Class
+### 🔢Find the Mean and Variability of the Reference Class
 
 We want to summarize our reference class data so that we can draw conclusions about our own project. We could do this by fitting our data to a distribution. However, Alice and Ben want to stick with the easiest approach available, and they regard fitting distributions as difficult.
 
@@ -193,13 +193,39 @@ She finds:
 
 
 (c/md "
-Alice and Ben decide they have something pretty workable at this point. Since they want to err on the side of caution, they estimate about 100 days.
+Alice and Ben decide they have something pretty workable at this point. They want a higher degree of confidence than a 50/50 chance. 75% seems about right. ")
+
+(c/md "##  🔢 Variations
+
+Often, it's difficult to find a good set of suitable candidates for the reference class. This could be because of a variation in the number of developers or the size of the project.
+
+In such cases, it could make sense to make some modifications. For example, if our other projects are of a different size, we could adjust based on our estimates of their size relative to the project we are estimating.
+
+For example, suppose we are estimating project A, and projects B, C, and D are similar except in size. We can weight B, C, and D according to how big they are relative to Project A.
+
+| Project | Duration | Size relative to A | Weighted Duration |
+|---------------|-----------------|----------------------------------|-------------------------------|
+| B       | 100 days | 50%                | 50 days           |
+| C       | 300 days | 200%               | 150 days          |
+| D       | 330 days | 300%               | 110 days          |
+
+In this case, your reference class would be: ")
+
+(def refclass2
+  [50 150 110])
+
+(c/md "
+
+There are plenty of variations. You may, for instance, poll everyone involved (business, product, engineering, QA) for ranges on how the project could be sized. You could convert the reference class into how many work items they involve, and run monte carlo simulations.
+
+But it is best to keep it simple. Remember: you are getting an estimate. Estimates get you started, but they should not be used to manage the delivery. Instead, the progress of the project as it is underway will soon become a more accurate and actionable metric.
+
 ")
 
 
 
 (c/md "
-# Appendix
+# 👩‍🔬 Appendix
 
 ## Why does bottom up estimation increase uncertainty?
 
@@ -236,4 +262,5 @@ This is the essence of the aggregation of uncertainty: when we combine tasks, th
 This is why a method like Reference Class Forecasting, which takes into account the distribution of outcomes in similar past projects, can often provide a more accurate forecast than simply adding up individual task estimates.
 ")
 
+^{::c/visibility {:result :hide :code :hide}}
 (c/show! *ns*)
